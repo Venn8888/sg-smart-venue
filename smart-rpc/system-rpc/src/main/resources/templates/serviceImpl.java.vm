@@ -1,0 +1,70 @@
+package ${package.ServiceImpl};
+
+import ${package.Entity}.${entity};
+import ${package.Mapper}.${table.mapperName};
+import ${package.Service}.${table.serviceName};
+import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
+import com.sg.common.exception.SgException;
+
+/**
+ * <p>
+ * $!{table.comment} 服务实现类
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+@Service
+#if(${kotlin})
+open class ${table.serviceImplName} : ${superServiceImplClass}<${table.mapperName}, ${entity}>(), ${table.serviceName} {
+
+}
+#else
+public class ${table.serviceImplName} implements ${table.serviceName} {
+
+    @Autowired
+    private ${table.mapperName} ${table.mapperName.substring(0,1).toLowerCase()}${table.mapperName.substring(1)};
+
+    @Override
+    public List<${entity}> selectListAll(${entity} ${entity.substring(0,1).toLowerCase()}${entity.substring(1)}){
+        return ${table.mapperName.substring(0,1).toLowerCase()}${table.mapperName.substring(1)}.selectListAll(${entity.substring(0,1).toLowerCase()}${entity.substring(1)});
+    }
+
+    @Override
+    public List<${entity}> selectById(int id){
+        return ${table.mapperName.substring(0,1).toLowerCase()}${table.mapperName.substring(1)}.selectById(id);
+    }
+
+    @Override
+    public void insert(${entity} ${entity.substring(0,1).toLowerCase()}${entity.substring(1)}) throws SgException{
+        ${table.mapperName.substring(0,1).toLowerCase()}${table.mapperName.substring(1)}.insert(${entity.substring(0,1).toLowerCase()}${entity.substring(1)});
+    }
+
+    @Override
+    public void updateById(${entity} ${entity.substring(0,1).toLowerCase()}${entity.substring(1)}) throws SgException{
+        ${table.mapperName.substring(0,1).toLowerCase()}${table.mapperName.substring(1)}.updateById(${entity.substring(0,1).toLowerCase()}${entity.substring(1)});
+    }
+
+##    @Override
+##    public void save(${entity} ${entity.substring(0,1).toLowerCase()}${entity.substring(1)}) throws SgException{
+##        ${table.mapperName.substring(0,1).toLowerCase()}${table.mapperName.substring(1)}.save(${entity.substring(0,1).toLowerCase()}${entity.substring(1)});
+##    }
+
+    @Override
+    public void deleteById(int id) throws SgException{
+        ${table.mapperName.substring(0,1).toLowerCase()}${table.mapperName.substring(1)}.deleteById(id);
+    }
+
+    @Override
+    public void deleteByIds(String ids) throws SgException{
+        ${table.mapperName.substring(0,1).toLowerCase()}${table.mapperName.substring(1)}.deleteByIds(ids);
+    }
+
+    @Override
+    public void saveForeach(List<${entity}> list) throws SgException{
+        ${table.mapperName.substring(0,1).toLowerCase()}${table.mapperName.substring(1)}.saveForeach(list);
+    }
+}
+#end

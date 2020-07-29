@@ -1,0 +1,65 @@
+#set($length=$package.Service.length() - 8)
+#set($prefix=$package.Service.substring(0, $length))
+#set($lowerEntity=$entity.substring(0,1).toLowerCase() + $entity.substring(1))
+package ${prefix}.mapper;
+
+import ${package.Entity}.${entity};
+import java.util.List;
+import com.sg.common.exception.SgException;
+
+/**
+ * $!{table.comment}Mapper
+ * @author ${author}
+ * ${date}
+ */
+public interface ${table.mapperName} {
+
+    /**
+    * 获取$!{table.comment}所有信息
+    * @param ${entity.substring(0,1).toLowerCase()}${entity.substring(1)}
+    */
+    List<${entity}> selectListAll(${entity} ${entity.substring(0,1).toLowerCase()}${entity.substring(1)});
+
+    /**
+    * 通过id获取信息
+    * @param id
+    */
+    List<${entity}> selectById(int id);
+
+    /**
+     * $!{table.comment} 新增数据
+     * @param ${entity.substring(0,1).toLowerCase()}${entity.substring(1)}
+    */
+    void insert(${entity} ${entity.substring(0,1).toLowerCase()}${entity.substring(1)}) throws SgException;
+
+    /**
+     * $!{table.comment} 更新数据
+     * @param ${entity.substring(0,1).toLowerCase()}${entity.substring(1)}
+     */
+    void updateById(${entity} ${entity.substring(0,1).toLowerCase()}${entity.substring(1)}) throws SgException;
+
+##    /**
+##     * $!{table.comment} 保存数据
+##     * @param ${entity.substring(0,1).toLowerCase()}${entity.substring(1)}
+##     */
+##    void save(${entity} ${entity.substring(0,1).toLowerCase()}${entity.substring(1)}) throws SgException;
+
+    /**
+     * $!{table.comment} 通过id删除数据
+     * @param id
+     */
+    void deleteById(int id) throws SgException;
+
+    /**
+     * $!{table.comment} 通过id批量删除数据
+     * @param ids
+     */
+    void deleteByIds(String ids) throws SgException;
+
+    /**
+     * $!{table.comment} 批量新增数据
+     * @param list
+     */
+    void saveForeach(List<${entity}> list) throws SgException;
+
+}

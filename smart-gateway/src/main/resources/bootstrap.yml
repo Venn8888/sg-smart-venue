@@ -1,0 +1,11 @@
+server:
+  port: 9900
+
+spring:
+  application:
+    name: ${artifactId}
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      server-addr: localhost:8848

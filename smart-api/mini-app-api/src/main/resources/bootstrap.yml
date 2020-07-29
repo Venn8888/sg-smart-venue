@@ -1,0 +1,28 @@
+server:
+  port: 8802
+spring:
+  application:
+    name: ${artifactId}
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      config:
+        shared-configs: redis.yml,rabbitmq.yml,common.yml
+
+
+dubbo:
+  scan:
+    base-packages:
+  protocols:
+    dubbo:
+      name: dubbo
+      port: -1
+  registry:
+    address: spring-cloud://localhost
+  consumer:
+    timeout: 5000
+    check: false
+    retries: 0
+  cloud:
+    subscribed-services:

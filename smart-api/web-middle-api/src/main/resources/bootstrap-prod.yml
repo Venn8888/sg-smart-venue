@@ -1,0 +1,9 @@
+spring:
+  profiles:
+    active: prod
+  cloud:
+    nacos:
+      config:
+        server-addr: 172.18.64.40:8848
+      discovery:
+        server-addr: ${spring.cloud.nacos.config.server-addr}
