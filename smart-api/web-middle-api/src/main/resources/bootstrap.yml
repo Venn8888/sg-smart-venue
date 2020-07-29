@@ -2,7 +2,7 @@ server:
   port: 8801
 spring:
   application:
-    name: ${artifactId}
+    name: web-middle-api
   main:
     allow-bean-definition-overriding: true
   cloud:

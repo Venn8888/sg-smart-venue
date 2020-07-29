@@ -1,0 +1,34 @@
+spring:
+    application:
+        name: system-rpc
+    cloud:
+        nacos:
+            config:
+                shared-configs: db-base.yml
+    main:
+        allow-bean-definition-overriding: true
+
+    profiles:
+        active: dev
+
+#mybatis 设置
+mybatis-plus:
+  mapper-locations: classpath:/mapper/**/*.xml
+
+#dubbo注册 订阅 相关
+dubbo:
+  #服务注册地址（注册到spring-cloud的注册服务器上）
+  registry:
+    address: spring-cloud://localhost
+  #扫描service实现类路径
+  scan:
+    base-packages: com.sg.system.facade.impl
+  protocol:
+    name: dubbo
+    port: -1
+    #订阅的服务 英文 “,”分割  不需要调用dubbo接口的可以注释掉
+  cloud:
+    subscribed-services:
+    #设置启动时不检测订阅的服务状态
+  consumer:
+    check: false

@@ -2,7 +2,7 @@ server:
   port: 8802
 spring:
   application:
-    name: ${artifactId}
+    name: mini-app-api
   main:
     allow-bean-definition-overriding: true
   cloud:
