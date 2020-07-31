@@ -21,7 +21,7 @@ public class CodeGennerator {
         //是否支持AR模式
         config.setActiveRecord(true)
                 .setAuthor("venn") //作者
-                .setOutputDir("D:\\Venn\\IdeaProjects\\sg-smart-venue\\smart-gennerator")  //生成路径
+                .setOutputDir("C:\\venn\\programe\\porject\\sg-smart-venue\\smart-gennerator\\src\\main\\java")  //生成路径
                 .setFileOverride(true)//是否文件覆盖，如果多次
                 .setServiceName("%sFacade") //设置生成的service接口名首字母是否为I
                 .setIdType(IdType.AUTO) //主键策略
@@ -43,15 +43,14 @@ public class CodeGennerator {
                 .setEntityLombokModel(true)
                 .setNaming(NamingStrategy.underline_to_camel) // 数据库表映射到实体的命名策略
                 .setInclude("sys_account_log","sys_account_org","sys_account_role","sys_authority","sys_data_authority","sys_data_dimension","sys_data_domain","sys_dimension","sys_field_authority","sys_org","sys_role","sys_role_authority","sys_user_account") //生成的表
-                .setInclude()
                 .setTablePrefix("sys_"); // 表前缀
         //4.包名策略
         PackageConfig pkConfig = new PackageConfig();
         pkConfig.setParent("")//父包名
-                .setController("com.sg.system.controller")
+                //.setController("com.sg.system.controller")
                 .setEntity("com.sg.system.domain")
                 .setService("com.sg.system.facade")
-                .setServiceImpl("com.sg.system.facade.impl")
+                .setServiceImpl("com.sg.system.impl")
                 .setMapper("com.sg.system.mapper")
                 .setXml("mapper.system");
         //5.整合配置

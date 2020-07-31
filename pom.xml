@@ -9,7 +9,6 @@
         <module>smart-commons</module>
         <module>smart-api</module>
         <module>smart-rpc</module>
-        <module>smart-gennerator</module>
     </modules>
 
     <parent>
