@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sg.system.mapper.AccountOrgMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.sg.system.domain.AccountOrgDomain">
+        <id column="ACCOUNT_ORG_ID" property="accountOrgId" />
+        <result column="APP_ID" property="appId" />
+        <result column="TYPE" property="type" />
+        <result column="ACCOUNT_ID" property="accountId" />
+        <result column="ORG_ID" property="orgId" />
+        <result column="STATUS" property="status" />
+        <result column="CREATED_BY" property="createdBy" />
+        <result column="UPDATED_BY" property="updatedBy" />
+        <result column="VERSION" property="version" />
+        <result column="IS_ACTIVE" property="isActive" />
+        <result column="CREATED_DATE" property="createdDate" />
+        <result column="UPDATED_DATE" property="updatedDate" />
+        <result column="MAIN_ID" property="mainId" />
+        <result column="DATA_ORG_ID" property="dataOrgId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ACCOUNT_ORG_ID, APP_ID, TYPE, ACCOUNT_ID, ORG_ID, STATUS, CREATED_BY, UPDATED_BY, VERSION, IS_ACTIVE, CREATED_DATE, UPDATED_DATE, MAIN_ID, DATA_ORG_ID
+    </sql>
+
+</mapper>

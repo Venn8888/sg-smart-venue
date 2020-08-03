@@ -34,6 +34,7 @@
         <jaxrs.version>3.12.1.Final</jaxrs.version>
         <springfox-boot.version>3.0.0</springfox-boot.version>
         <lombok.version>1.18.2</lombok.version>
+        <redis.version>2.2.8.RELEASE</redis.version>
     </properties>
 
     <dependencyManagement>

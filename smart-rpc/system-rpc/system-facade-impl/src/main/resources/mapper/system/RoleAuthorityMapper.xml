@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sg.system.mapper.RoleAuthorityMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.sg.system.domain.RoleAuthorityDomain">
+        <id column="AUTH_ID" property="authId" />
+        <result column="ROLE_ID" property="roleId" />
+        <result column="APP_ID" property="appId" />
+        <result column="AUTHORITY_ID" property="authorityId" />
+        <result column="VERSION" property="version" />
+        <result column="IS_ACTIVE" property="isActive" />
+        <result column="CREATED_DATE" property="createdDate" />
+        <result column="UPDATED_DATE" property="updatedDate" />
+        <result column="DATA_ORG_ID" property="dataOrgId" />
+        <result column="MAIN_ID" property="mainId" />
+        <result column="CREATED_BY" property="createdBy" />
+        <result column="UPDATED_BY" property="updatedBy" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        AUTH_ID, ROLE_ID, APP_ID, AUTHORITY_ID, VERSION, IS_ACTIVE, CREATED_DATE, UPDATED_DATE, DATA_ORG_ID, MAIN_ID, CREATED_BY, UPDATED_BY
+    </sql>
+
+</mapper>

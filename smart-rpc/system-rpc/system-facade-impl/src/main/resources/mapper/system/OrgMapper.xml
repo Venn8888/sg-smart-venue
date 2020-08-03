@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sg.system.mapper.OrgMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.sg.system.domain.OrgDomain">
+        <id column="ORG_ID" property="orgId" />
+        <result column="APP_ID" property="appId" />
+        <result column="TYPE" property="type" />
+        <result column="CODE" property="code" />
+        <result column="NAME" property="name" />
+        <result column="SHORT_NAME" property="shortName" />
+        <result column="HELP_NUM" property="helpNum" />
+        <result column="PARENT_ID" property="parentId" />
+        <result column="LEVEL_NO" property="levelNo" />
+        <result column="SN" property="sn" />
+        <result column="STATUS" property="status" />
+        <result column="MEMO" property="memo" />
+        <result column="UDF1" property="udf1" />
+        <result column="UDF2" property="udf2" />
+        <result column="UDF3" property="udf3" />
+        <result column="UDF4" property="udf4" />
+        <result column="UDF5" property="udf5" />
+        <result column="CREATED_BY" property="createdBy" />
+        <result column="UPDATED_BY" property="updatedBy" />
+        <result column="VERSION" property="version" />
+        <result column="IS_ACTIVE" property="isActive" />
+        <result column="CREATED_DATE" property="createdDate" />
+        <result column="UPDATED_DATE" property="updatedDate" />
+        <result column="MAIN_ID" property="mainId" />
+        <result column="DATA_ORG_ID" property="dataOrgId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ORG_ID, APP_ID, TYPE, CODE, NAME, SHORT_NAME, HELP_NUM, PARENT_ID, LEVEL_NO, SN, STATUS, MEMO, UDF1, UDF2, UDF3, UDF4, UDF5, CREATED_BY, UPDATED_BY, VERSION, IS_ACTIVE, CREATED_DATE, UPDATED_DATE, MAIN_ID, DATA_ORG_ID
+    </sql>
+
+</mapper>

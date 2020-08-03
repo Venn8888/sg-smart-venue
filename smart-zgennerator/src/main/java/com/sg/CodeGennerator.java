@@ -21,7 +21,7 @@ public class CodeGennerator {
         //是否支持AR模式
         config.setActiveRecord(true)
                 .setAuthor("venn") //作者
-                .setOutputDir("C:\\venn\\programe\\porject\\sg-smart-venue\\smart-gennerator\\src\\main\\java")  //生成路径
+                .setOutputDir("C:\\venn\\programe\\porject\\sg-smart-venue\\smart-zgennerator\\src\\main\\java")  //生成路径
                 .setFileOverride(true)//是否文件覆盖，如果多次
                 .setServiceName("%sFacade") //设置生成的service接口名首字母是否为I
                 .setIdType(IdType.AUTO) //主键策略

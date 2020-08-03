@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sg.system.mapper.DataAuthorityMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.sg.system.domain.DataAuthorityDomain">
+        <id column="AUTH_ID" property="authId" />
+        <result column="APP_ID" property="appId" />
+        <result column="TYPE" property="type" />
+        <result column="ACCOUNT_TYPE" property="accountType" />
+        <result column="ACCOUNT_ID" property="accountId" />
+        <result column="ACCOUNT_NAME" property="accountName" />
+        <result column="ROLE_ID" property="roleId" />
+        <result column="ROLE_NAME" property="roleName" />
+        <result column="ORG_ID" property="orgId" />
+        <result column="STATUS" property="status" />
+        <result column="MEMO" property="memo" />
+        <result column="CREATED_BY" property="createdBy" />
+        <result column="UPDATED_BY" property="updatedBy" />
+        <result column="VERSION" property="version" />
+        <result column="IS_ACTIVE" property="isActive" />
+        <result column="CREATED_DATE" property="createdDate" />
+        <result column="UPDATED_DATE" property="updatedDate" />
+        <result column="MAIN_ID" property="mainId" />
+        <result column="DATA_ORG_ID" property="dataOrgId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        AUTH_ID, APP_ID, TYPE, ACCOUNT_TYPE, ACCOUNT_ID, ACCOUNT_NAME, ROLE_ID, ROLE_NAME, ORG_ID, STATUS, MEMO, CREATED_BY, UPDATED_BY, VERSION, IS_ACTIVE, CREATED_DATE, UPDATED_DATE, MAIN_ID, DATA_ORG_ID
+    </sql>
+
+</mapper>

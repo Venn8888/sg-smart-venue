@@ -4,7 +4,7 @@ spring:
     cloud:
         nacos:
             config:
-                shared-configs: db-base.yml
+                shared-configs: db-base.yml,redis.yml
     main:
         allow-bean-definition-overriding: true
 

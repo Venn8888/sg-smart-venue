@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sg.system.mapper.UserAccountMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.sg.system.domain.UserAccountDomain">
+        <id column="ACCOUNT_ID" property="accountId" />
+        <result column="TYPE" property="type" />
+        <result column="USER_NAME" property="userName" />
+        <result column="PASSWORD" property="password" />
+        <result column="OPEN_ID" property="openId" />
+        <result column="DEFAULT_MAIN_ID" property="defaultMainId" />
+        <result column="DEFAULT_ORG_ID" property="defaultOrgId" />
+        <result column="SOURCES" property="sources" />
+        <result column="IS_ENABLE" property="isEnable" />
+        <result column="IS_AUTHENTICATED" property="isAuthenticated" />
+        <result column="EXPIRED_DATE" property="expiredDate" />
+        <result column="PASSWORD_EXPIRED_TIME" property="passwordExpiredTime" />
+        <result column="MEMO" property="memo" />
+        <result column="UDF1" property="udf1" />
+        <result column="UDF2" property="udf2" />
+        <result column="UDF3" property="udf3" />
+        <result column="UDF4" property="udf4" />
+        <result column="UDF5" property="udf5" />
+        <result column="VERSION" property="version" />
+        <result column="IS_ACTIVE" property="isActive" />
+        <result column="CREATED_BY" property="createdBy" />
+        <result column="UPDATED_BY" property="updatedBy" />
+        <result column="CREATED_DATE" property="createdDate" />
+        <result column="UPDATED_DATE" property="updatedDate" />
+        <result column="MAIN_ID" property="mainId" />
+        <result column="DATA_ORG_ID" property="dataOrgId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ACCOUNT_ID, TYPE, USER_NAME, PASSWORD, OPEN_ID, DEFAULT_MAIN_ID, DEFAULT_ORG_ID, SOURCES, IS_ENABLE, IS_AUTHENTICATED, EXPIRED_DATE, PASSWORD_EXPIRED_TIME, MEMO, UDF1, UDF2, UDF3, UDF4, UDF5, VERSION, IS_ACTIVE, CREATED_BY, UPDATED_BY, CREATED_DATE, UPDATED_DATE, MAIN_ID, DATA_ORG_ID
+    </sql>
+
+    <select id="authSByAccountId" resultType="java.lang.String" parameterType="string">
+        SELECT DISTINCT
+            api.AUTH_CODE
+        FROM
+            SYS_ACCOUNT_ROLE o,
+            SYS_ROLE_AUTHORITY auth,
+            SYS_AUTHORITY api
+        WHERE
+            o.IS_ACTIVE = 'Y'
+            AND auth.ROLE_ID = o.ROLE_ID
+            AND api.AUTHORITY_ID = auth.AUTHORITY_ID
+            AND api.STATUS = 'Y'
+            AND o.ACCOUNT_ID = #{accountId}
+    </select>
+
+</mapper>
