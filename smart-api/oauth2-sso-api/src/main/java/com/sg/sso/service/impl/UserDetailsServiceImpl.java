@@ -8,7 +8,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -21,7 +20,6 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -35,22 +33,12 @@ import java.util.Set;
 @Slf4j
 @Service("userDetailsServiceImpl")
 public class UserDetailsServiceImpl implements UserDetailsService {
-    private static final String DEFAULT_SELECT_STATEMENT = "select o.ACCOUNT_ID,o.TYPE,o.USER_NAME,o.PASSWORD,o.DEFAULT_MAIN_ID,o.DEFAULT_ORG_ID,o.IS_ENABLE,o.IS_AUTHENTICATED,o.EXPIRED_DATE,o.PASSWORD_EXPIRED_TIME from SYS_USER_ACCOUNT o where o.IS_ACTIVE='Y' and o.USER_NAME = ?";
-    private static final String DEFAULT_SELECT_DATA_ORG = "select o.ORG_ID from SYS_ACCOUNT_ORG o where o.IS_ACTIVE='Y' and o.ACCOUNT_ID = ?";
-
-
-    private final JdbcTemplate jdbcTemplate;
 
     @Value("${application.common.client-id}")
     private String clientId;
 
     @Reference
     private UserAccountFacade userAccountFacade;
-
-    public UserDetailsServiceImpl(DataSource dataSource) {
-        Assert.notNull(dataSource, "DataSource required");
-        this.jdbcTemplate = new JdbcTemplate(dataSource);
-    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

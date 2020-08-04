@@ -1,5 +1,5 @@
 server:
-  port: 8803
+  port: 8888
 spring:
   application:
     name: oauth2-sso-api
@@ -9,6 +9,12 @@ spring:
     nacos:
       config:
         shared-configs: redis.yml,common.yml
+  datasource:
+    password: 123456
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://122.51.7.220:3333/oauth2_config?useSSL=false&useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=CONVERT_TO_NULL
+    username: root
 
   profiles:
     active: dev

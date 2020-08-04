@@ -1,15 +1,14 @@
 package com.sg.sso.utils;
 
 import com.alibaba.fastjson.JSONObject;
-import com.sg.common.utils.ConfigFromNacosUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.client.RestTemplate;
 
 /**
  * Oauth2登录工具类
@@ -21,11 +20,14 @@ import org.springframework.web.client.RestTemplate;
 @Component
 public class Oauth2LoginUtil {
 
-    @Autowired
-    private ConfigFromNacosUtil config;
+   /* @Autowired
+    private ConfigFromNacosUtil config;*/
+
+    @Value("${application.common.access-token-uri}")
+    private String TOKEN_URI;
 
     @Autowired
-    private RestTemplate baseRestTemplate;
+    private BaseRestTemplate baseRestTemplate;
 
     /**
      * 第三方登录获取token
@@ -37,7 +39,7 @@ public class Oauth2LoginUtil {
      * @return 结果
      */
     public JSONObject getToken(String userName, String password, String type, HttpHeaders headers) {
-        String tokenUri = config.getProfileByKey("application.common.access-token-uri");
+        //String tokenUri = config.getProfileByKey("application.common.access-token-uri");
         String clientId = "7gBZcbsC7kLIWCdELIl8nxcs";
         String clientSecret = "0osTIhce7uPvDKHz6aa67bhCukaKoYl4";
         // 使用oauth2密码模式登录.
@@ -55,6 +57,6 @@ public class Oauth2LoginUtil {
         headers.remove(HttpHeaders.AUTHORIZATION);
         HttpEntity request = new HttpEntity(postParameters, headers);
 
-        return baseRestTemplate.postForObject(tokenUri, request, JSONObject.class);
+        return baseRestTemplate.postForObject(TOKEN_URI, request, JSONObject.class);
     }
 }
