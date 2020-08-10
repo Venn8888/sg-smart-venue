@@ -1,6 +1,5 @@
 package com.sg.sso.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.sg.sso.utils.WebUtil;
 import com.sg.system.domain.UserAccountDomain;
 import com.sg.system.facade.UserAccountFacade;
@@ -43,15 +42,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         try {
-            QueryWrapper userDomainQueryWrapper = new QueryWrapper<UserAccountDomain>();
-            userDomainQueryWrapper.eq("user_name",username);
-            UserAccountDomain domain = userAccountFacade.getOne(userDomainQueryWrapper);
+
+            UserAccountDomain domain = userAccountFacade.getByUserName(username);
             HttpServletRequest request = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest();
             Assert.notNull(domain, "ssoUser is null");
             String ip = WebUtil.getHost(request);
             log.info("ip:{}", ip);
 
-            Set<String> authS = userAccountFacade.authSByAccountId(domain.getAccountId());
+            Set<String> authS = userAccountFacade.authsbyaccountid(domain.getAccountId());
             List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
             for (String auth : authS) {
                 if (StringUtils.isBlank(auth)) {
@@ -60,7 +58,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(auth);
                 grantedAuthorities.add(grantedAuthority);
             }
-            User user = new User(username,domain.getPassword(),grantedAuthorities);
+            User user = new User(username, domain.getPassword(), grantedAuthorities);
 
             return user;
         } catch (Exception e) {

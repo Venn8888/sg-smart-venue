@@ -1,14 +1,15 @@
 package com.sg.system.domain;
 
-import java.math.BigDecimal;
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.extension.activerecord.Model;
-import java.time.LocalDateTime;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -28,7 +29,7 @@ public class UserAccountDomain extends Model<UserAccountDomain> {
     /**
      * 用户帐号
      */
-    @TableId(value = "ACCOUNT_ID", type = IdType.AUTO)
+    @TableId(value = "ACCOUNT_ID", type = IdType.NONE)
     private String accountId;
 
     /**

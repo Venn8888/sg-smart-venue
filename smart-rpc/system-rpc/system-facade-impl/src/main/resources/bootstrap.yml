@@ -19,7 +19,7 @@ mybatis-plus:
 
 dubbo:
   scan:
-    base-packages: com.sg.system.impl
+    base-packages: com.sg.system.facade.impl
   protocols:
     dubbo:
       name: dubbo

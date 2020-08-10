@@ -1,10 +1,9 @@
 package com.sg.system.mapper;
 
-import com.sg.system.domain.UserAccountDomain;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import org.springframework.web.bind.annotation.RequestParam;
+import com.sg.system.domain.UserAccountDomain;
+import org.apache.ibatis.annotations.Param;
 
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -19,4 +18,5 @@ public interface UserAccountMapper extends BaseMapper<UserAccountDomain> {
 
     Set<String> authSByAccountId(String accountId);
 
+    UserAccountDomain getByUserName(@Param("userName") String userName);
 }

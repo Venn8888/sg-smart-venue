@@ -52,4 +52,12 @@
             AND o.ACCOUNT_ID = #{accountId}
     </select>
 
+    <select id="getByUserName" resultMap="BaseResultMap" parameterType="string">
+        select
+            <include refid="Base_Column_List"></include>
+        from sys_user_account
+        where IS_ACTIVE = 'Y'
+        and user_name = #{userName}
+        limit 1
+    </select>
 </mapper>

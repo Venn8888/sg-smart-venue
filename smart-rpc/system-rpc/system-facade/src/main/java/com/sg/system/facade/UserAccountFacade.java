@@ -1,9 +1,8 @@
 package com.sg.system.facade;
 
-import com.sg.system.domain.UserAccountDomain;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.sg.system.domain.UserAccountDomain;
 
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -21,5 +20,10 @@ public interface UserAccountFacade extends IService<UserAccountDomain> {
      * @param accountId
      * @return
      */
-    Set<String> authSByAccountId(String accountId);
+    Set<String> authsbyaccountid(String accountId);
+
+    /**
+     *
+     */
+    UserAccountDomain getByUserName(String userName);
 }

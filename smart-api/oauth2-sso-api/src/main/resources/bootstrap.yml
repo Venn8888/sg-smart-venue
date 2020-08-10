@@ -42,4 +42,15 @@ dubbo:
     check: false
     retries: 0
   cloud:
-    subscribed-services:
+    subscribed-services: system-rpc
+
+application:
+  client:
+    oauth2:
+      admin:
+        access-token-uri: ${application.common.access-token-uri}
+        client-id: 7gBZcbsC7kLIWCdELIl8nxcs
+        client-secret: 0osTIhce7uPvDKHz6aa67bhCukaKoYl4
+        scope: ${application.common.scope}
+        user-authorization-uri:  ${application.common.user-authorization-uri}
+        user-info-uri: ${application.common.user-info-uri}

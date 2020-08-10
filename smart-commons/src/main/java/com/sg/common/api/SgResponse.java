@@ -34,6 +34,16 @@ public class SgResponse<T> implements Serializable {
      */
     private String msg;
 
+    /**
+     * 请求状态
+     */
+    private int httpStatus;
+
+    /**
+     * 请求路径
+     */
+    private String path;
+
     public SgResponse() {
         // to do nothing
     }

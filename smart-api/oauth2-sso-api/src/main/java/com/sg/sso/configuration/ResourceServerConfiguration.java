@@ -1,5 +1,7 @@
 package com.sg.sso.configuration;
 
+import com.sg.common.exception.BaseAccessDeniedHandler;
+import com.sg.common.exception.BaseAuthenticationEntryPoint;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest;
@@ -30,7 +32,6 @@ import java.io.IOException;
 @Configuration
 @EnableResourceServer
 public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
-
     @Autowired
     private TokenStore tokenStore;
 
@@ -55,6 +56,8 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
                 .and()
                 // 认证鉴权错误处理,为了统一异常处理。每个资源服务器都应该加上。
                 .exceptionHandling()
+                .accessDeniedHandler(new BaseAccessDeniedHandler())
+                .authenticationEntryPoint(new BaseAuthenticationEntryPoint())
                 .and()
                 .csrf().disable()
                 // 禁用httpBasic
