@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 /**
@@ -209,7 +209,7 @@ public class WebUtil {
 
         try {
             inputStream = cloneInputStream(request.getInputStream());
-            reader = new BufferedReader(new InputStreamReader(inputStream, Charset.forName("UTF-8")));
+            reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
             String line = "";
 
             while((line = reader.readLine()) != null) {
@@ -260,7 +260,7 @@ public class WebUtil {
 
     public static Map<String, String> getParameterMap(HttpServletRequest request) {
         String contentType = request.getHeader("Content-Type");
-        Map<String, String> returnMap = new HashMap();
+        Map<String, String> returnMap = new HashMap<>();
         if (!"application/json".equals(contentType) && !"application/json;charset=UTF-8".equals(contentType)) {
             if ("application/x-www-form-urlencoded".equals(contentType)) {
                 Map properties = request.getParameterMap();
@@ -309,7 +309,7 @@ public class WebUtil {
         Iterator it = params.entrySet().iterator();
 
         while(it.hasNext()) {
-            Map.Entry<String, Object> entry = (Map.Entry)it.next();
+            Map.Entry entry = (Map.Entry)it.next();
             queryStringBuilder.append(pre).append((String)entry.getKey()).append("=").append(entry.getValue());
             if (it.hasNext()) {
                 queryStringBuilder.append("&");

@@ -2,7 +2,6 @@ package com.sg.common.utils;
 
 import com.alibaba.fastjson.JSON;
 import com.sg.common.exception.BusinessException;
-import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -106,15 +105,8 @@ public class BeanUtil {
         return convertBean(object, Map.class);
     }
 
-	public static void setProperty(Object target, String field, Object value) {
-		try {
-			PropertyUtils.setProperty(target, field, value);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
-	
+
 	public static void copy(Object target, Object source) {
 		try {
 			BeanUtils.copyProperties(source, target);

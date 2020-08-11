@@ -1,5 +1,6 @@
 package com.sg.gateway.autoconfigure;
 
+import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
@@ -14,6 +15,7 @@ import java.util.Set;
  */
 @ConfigurationProperties(prefix = "application.api")
 @Component
+@Data
 public class ApiProperties {
     /**
      * 是否开启签名验证
@@ -38,45 +40,4 @@ public class ApiProperties {
      * 无需鉴权的请求
      */
     private Set<String> authorityIgnores;
-
-
-    public Boolean getCheckSign() {
-        return checkSign;
-    }
-
-    public void setCheckSign(Boolean checkSign) {
-        this.checkSign = checkSign;
-    }
-
-    public Boolean getAccessControl() {
-        return accessControl;
-    }
-
-    public void setAccessControl(Boolean accessControl) {
-        this.accessControl = accessControl;
-    }
-
-    public Boolean getApiDebug() {
-        return apiDebug;
-    }
-
-    public void setApiDebug(Boolean apiDebug) {
-        this.apiDebug = apiDebug;
-    }
-
-    public Set<String> getPermitAll() {
-        return permitAll;
-    }
-
-    public void setPermitAll(Set<String> permitAll) {
-        this.permitAll = permitAll;
-    }
-
-    public Set<String> getAuthorityIgnores() {
-        return authorityIgnores;
-    }
-
-    public void setAuthorityIgnores(Set<String> authorityIgnores) {
-        this.authorityIgnores = authorityIgnores;
-    }
 }

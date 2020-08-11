@@ -81,9 +81,7 @@ public class AccessAuthorizationManager implements ReactiveAuthorizationManager<
         if (permitAll(requestPath)) {
             return Mono.just(new AuthorizationDecision(true));
         }
-        return authentication.map(a -> {
-            return new AuthorizationDecision(checkAuthorities(exchange, a, requestPath));
-        }).defaultIfEmpty(new AuthorizationDecision(false));
+        return authentication.map(a -> new AuthorizationDecision(checkAuthorities(exchange, a, requestPath))).defaultIfEmpty(new AuthorizationDecision(false));
     }
 
     /**
