@@ -9,6 +9,7 @@ import com.sg.gateway.autoconfigure.ApiProperties;
 import com.sg.gateway.util.matcher.ReactiveIpAddressMatcher;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.access.SecurityConfig;
@@ -37,6 +38,7 @@ import java.util.Set;
 public class AccessAuthorizationManager implements ReactiveAuthorizationManager<AuthorizationContext> {
 
 
+    @Autowired
     private ApiProperties apiProperties;
 
     private static final AntPathMatcher pathMatch = new AntPathMatcher();

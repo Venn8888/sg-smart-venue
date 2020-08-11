@@ -3,7 +3,6 @@ package com.sg.gateway.exception;
 import com.alibaba.fastjson.JSONObject;
 import com.sg.common.api.SgResponse;
 import com.sg.common.exception.BaseExceptionHandler;
-import com.sg.gateway.service.impl.AccessLogService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.core.io.buffer.DataBufferFactory;
@@ -23,11 +22,6 @@ import java.security.SignatureException;
  */
 @Slf4j
 public class JsonSignatureDeniedHandler implements ServerSignatureDeniedHandler {
-    private AccessLogService accessLogService;
-
-    public JsonSignatureDeniedHandler(AccessLogService accessLogService) {
-        this.accessLogService = accessLogService;
-    }
 
     @Override
     public Mono<Void> handle(ServerWebExchange exchange, SignatureException e) {
@@ -37,8 +31,6 @@ public class JsonSignatureDeniedHandler implements ServerSignatureDeniedHandler 
             response.getHeaders().setContentType(MediaType.APPLICATION_JSON);
             DataBufferFactory dataBufferFactory = response.bufferFactory();
             DataBuffer buffer = dataBufferFactory.wrap(JSONObject.toJSONString(resultBody).getBytes(Charset.defaultCharset()));
-            // 保存日志
-            accessLogService.sendLog(exchange, e);
             return response.writeWith(Mono.just(buffer)).doOnError((error) -> {
                 DataBufferUtils.release(buffer);
             });

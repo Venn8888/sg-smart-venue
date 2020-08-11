@@ -2,12 +2,10 @@ package com.sg.gateway.autoconfigure;
 
 import com.sg.gateway.exception.JsonSignatureDeniedHandler;
 import com.sg.gateway.filter.AccessAuthorizationManager;
-import com.sg.gateway.filter.AccessLogFilter;
 import com.sg.gateway.filter.PreRequestFilter;
 import com.sg.gateway.filter.PreSignatureFilter;
 import com.sg.gateway.oauth2.RedisAuthenticationManager;
 import com.sg.gateway.service.IBaseAppService;
-import com.sg.gateway.service.impl.AccessLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -56,11 +54,6 @@ public class SecurityConfiguration {
     @Autowired
     private IBaseAppService baseAppService;
 
-    @Autowired
-    private AccessLogService accessLogService;
-
-    @Autowired
-    private AccessAuthorizationManager accessAuthorizationManager;
     /**
      * 跨域配置
      *
@@ -95,7 +88,7 @@ public class SecurityConfiguration {
     @Bean
     SecurityWebFilterChain springWebFilterChain(ServerHttpSecurity http) throws Exception {
         // 自定义oauth2 认证, 使用redis读取token,而非jwt方式
-
+        AccessAuthorizationManager accessAuthorizationManager = new AccessAuthorizationManager(apiProperties);
         AuthenticationWebFilter oauth2 = new AuthenticationWebFilter(new RedisAuthenticationManager(new RedisTokenStore(redisConnectionFactory)));
         oauth2.setServerAuthenticationConverter(new ServerBearerTokenAuthenticationConverter());
         oauth2.setAuthenticationSuccessHandler((webFilterExchange, authentication) -> {
@@ -119,11 +112,9 @@ public class SecurityConfiguration {
                 // 跨域过滤器
                 .addFilterAt(corsFilter(), SecurityWebFiltersOrder.CORS)
                 // 签名验证过滤器
-                .addFilterAt(new PreSignatureFilter(baseAppService, apiProperties, new JsonSignatureDeniedHandler(accessLogService)), SecurityWebFiltersOrder.CSRF)
+                .addFilterAt(new PreSignatureFilter(baseAppService, apiProperties, new JsonSignatureDeniedHandler()), SecurityWebFiltersOrder.CSRF)
                 // oauth2认证过滤器
-                .addFilterAt(oauth2, SecurityWebFiltersOrder.AUTHENTICATION)
-                // 日志过滤器
-                .addFilterAt(new AccessLogFilter(accessLogService), SecurityWebFiltersOrder.SECURITY_CONTEXT_SERVER_WEB_EXCHANGE);
+                .addFilterAt(oauth2, SecurityWebFiltersOrder.AUTHENTICATION);
         return http.build();
     }
 }
