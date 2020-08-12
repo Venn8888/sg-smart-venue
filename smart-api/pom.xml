@@ -14,7 +14,6 @@
     <modules>
         <module>web-middle-api</module>
         <module>mini-app-api</module>
-        <module>oauth2-sso-api</module>
     </modules>
 
     <dependencies>

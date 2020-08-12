@@ -28,7 +28,7 @@ public class UserAccountFacadeImpl extends ServiceImpl<UserAccountMapper, UserAc
     }
 
     @Override
-    public Set<String> authsbyaccountid(String accountId) {
+    public Set<String> authByAccountId(String accountId) {
         return userAccountMapper.authSByAccountId(accountId);
     }
 

@@ -5,18 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
     <modules>
-        <module>smart-gateway</module>
+        <module>smart-welcome</module>
         <module>smart-commons</module>
         <module>smart-api</module>
         <module>smart-rpc</module>
     </modules>
-
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.2.8.RELEASE</version>
-        <relativePath/>
-    </parent>
 
     <groupId>com.sg</groupId>
     <artifactId>sg-smart-venue</artifactId>
@@ -34,6 +27,27 @@
         <jaxrs.version>3.12.1.Final</jaxrs.version>
         <springfox-boot.version>3.0.0</springfox-boot.version>
         <lombok.version>1.18.2</lombok.version>
+        <jxl.version>2.6.12</jxl.version>
+        <poi.version>3.9</poi.version>
+        <thumbnailator.version>0.4.8</thumbnailator.version>
+        <jsch.version>0.1.53</jsch.version>
+        <pinyin4j.version>2.5.1</pinyin4j.version>
+        <xfire.version>1.2.6</xfire.version>
+        <alibaba.fastjson.version>1.2.69</alibaba.fastjson.version>
+        <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+        <maven-compiler-plugin.version>3.6.2</maven-compiler-plugin.version>
+        <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
+        <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
+        <maven-surefire-plugin.version>2.22.0</maven-surefire-plugin.version>
+        <maven-assembly-plugin.version>3.1.0</maven-assembly-plugin.version>
+        <dockerfile-maven-plugin.version>1.4.10</dockerfile-maven-plugin.version>
+        <apache.commons-lang3.version>3.3.2</apache.commons-lang3.version>
+        <apache.commons-io.version>2.5</apache.commons-io.version>
+        <apache.commons.beanutils>1.9.3</apache.commons.beanutils>
+
+        <mybatis-plus.version>3.3.0</mybatis-plus.version>
+        <hutool.version>4.1.19</hutool.version>
+        <com.google.zxing.version>3.1.0</com.google.zxing.version>
     </properties>
 
     <dependencyManagement>
@@ -42,6 +56,13 @@
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
                 <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-parent</artifactId>
+                <version>${spring-boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -92,4 +113,13 @@
             </properties>
         </profile>
     </profiles>
+
+
+    <distributionManagement>
+        <repository>
+            <id>maven-releases</id>
+            <url>http://47.113.89.58:9000/repository/maven-releases/</url>
+        </repository>
+    </distributionManagement>
+
 </project>

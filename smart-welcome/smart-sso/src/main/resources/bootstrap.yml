@@ -1,0 +1,75 @@
+server:
+  port: 9999
+  servlet:
+    session:
+      cookie:
+        name: OAUTH2SESSION
+# 应用
+spring:
+  application:
+    name: smart-sso
+  cloud:
+    #手动配置Bus id,
+    bus:
+      id: ${spring.application.name}:${server.port}
+    nacos:
+      config:
+        shared-configs: common.yml,db-base.yml,redis.yml,rabbitmq.yml
+  main:
+    allow-bean-definition-overriding: true
+  # 解决restful 404错误 spring.mvc.throw-exception-if-no-handler-found=true spring.resources.add-mappings=false
+  mvc:
+    throw-exception-if-no-handler-found: true
+  resources:
+    add-mappings: false
+  profiles:
+    active: ${profiles.active}
+  thymeleaf:
+    cache: false
+    encoding: UTF-8
+    mode: LEGACYHTML5
+    prefix: classpath:/templates/
+    suffix: .html
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+application:
+  swagger2:
+    enabled: true
+    description: 平台用户认证服务器
+    title: 平台用户认证服务器
+  client:
+    oauth2:
+      admin:
+        access-token-uri: ${application.common.access-token-uri}
+        client-id: 7gBZcbsC7kLIWCdELIl8nxcs
+        client-secret: 0osTIhce7uPvDKHz6aa67bhCukaKoYl4
+        scope: ${application.common.scope}
+        user-authorization-uri:  ${application.common.user-authorization-uri}
+        user-info-uri: ${application.common.user-info-uri}
+
+# 应用自定义配置
+logging:
+  config: classpath:logback-spring.xml
+
+#dubbo注册 订阅 相关
+dubbo:
+  scan:
+    base-packages:
+  #服务注册地址（注册到spring-cloud的注册服务器上）
+  registry:
+    address: spring-cloud://localhost
+  protocol:
+    name: dubbo
+    port: -1
+    #订阅的服务 英文 “,”分割  不需要调用dubbo接口的可以注释掉
+  cloud:
+    subscribed-services: system-rpc
+    #设置启动时不检测订阅的服务状态
+  consumer:
+    check: false
+

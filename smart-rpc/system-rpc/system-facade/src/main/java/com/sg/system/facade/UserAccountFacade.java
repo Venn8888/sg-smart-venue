@@ -20,7 +20,7 @@ public interface UserAccountFacade extends IService<UserAccountDomain> {
      * @param accountId
      * @return
      */
-    Set<String> authsbyaccountid(String accountId);
+    Set<String> authByAccountId(String accountId);
 
     /**
      *
